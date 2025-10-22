@@ -1,1 +1,1 @@
-prinr("trtrtr")
+print("trtrtr")
