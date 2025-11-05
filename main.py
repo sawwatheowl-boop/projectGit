@@ -1,3 +1,5 @@
+from itertools import count
+
 liked_songs = {
     "Shake It Off": {
         "artist": "Taylor Swift",
@@ -57,12 +59,34 @@ def add_3_songs(dic):
 def del_song(dic):
     song = input("Enter the song that you want to check: ")
     if song in dic:
-        print("Do you want to delete")
-        del dic[song]
+        choice = int(input("Do you want to delete(yes-1/no-2)"))
+        if choice == 1:
+            del dic[song]
     else:
         print("This song is not in playlist!")
 
-def main():
-    pass
+def del_siger(dic):
+    count = 0
+    singer = input("Which singer do you want to delete? ")
+    for song in dic:
+        if song["artist"] == singer:
+            count += 1
+            del dic[song]
 
+    if count == 0:
+        print("There were no songs with this singer =(")
+def main():
+    flag = True
+    while flag:
+        print("1 - add 3 songs\n2 - check song\n3 - delete song by singer\n4 - exit")
+        num = int(input("What do you want to do? "))
+        if num == 1:
+            add_3_songs(liked_songs)
+        elif num == 2:
+            del_song(liked_songs)
+        elif num == 3:
+            del_siger(liked_songs)
+        elif num == 4:
+            flag = False
+    print(liked_songs)
 main()
